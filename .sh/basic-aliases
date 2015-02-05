@@ -1,5 +1,16 @@
 #!/bin/sh
 
+# GNU ls has -G
+#
+
+
+if [ "$(uname)" == "Darwin"; then
+    # OSX
+elif [ "$(expr substr $(uname -s) 1 5)" == "SunOS" ]; then
+    # Solaris
+elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+fi
+
 if ls --classify >& /dev/null; then
     alias ls='ls -G --classify --color=auto'
 else
