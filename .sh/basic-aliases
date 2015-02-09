@@ -3,13 +3,24 @@
 # GNU ls has -G
 #
 
+LS_OPTS=''
 
-if [ "$(uname)" == "Darwin"; then
-    # OSX
-elif [ "$(expr substr $(uname -s) 1 5)" == "SunOS" ]; then
-    # Solaris
-elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+if ls --classify >& /dev/null; then
+    LS_OPTS+=' --classify --color=auto'
 fi
+
+if ls -G >& /dev/null; then
+    LS_OPTS+=' -G'
+fi
+
+# Any OS specific stuff here.
+#if [[ "$(uname)" == "Darwin" ]]; then
+    # OSX
+#elif [[ "$(expr substr $(uname -s) 1 5)" == "SunOS" ]]; then
+    # Solaris
+#elif [[ "$(expr substr $(uname -s) 1 5)" == "Linux" ]]; then
+    # Linux
+#fi
 
 if ls --classify >& /dev/null; then
     alias ls='ls -G --classify --color=auto'
