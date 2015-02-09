@@ -3,7 +3,7 @@
 # GNU ls has -G
 #
 
-LS_OPTS=''
+LS_OPTS='-h'
 
 if ls --classify >& /dev/null; then
     LS_OPTS+=' --classify --color=auto'
@@ -22,11 +22,8 @@ fi
     # Linux
 #fi
 
-if ls --classify >& /dev/null; then
-    alias ls='ls -G --classify --color=auto'
-else
-    alias ls='ls -hG' # More?
-fi
+alias ls="ls ${LS_OPTS}"
+
 alias ll='ls -l'
 alias la='ls -a'
 alias lA='ls -A'
